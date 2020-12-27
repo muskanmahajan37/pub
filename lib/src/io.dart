@@ -803,7 +803,7 @@ ByteStream createTarGz(List<String> contents, {String baseDir}) {
   baseDir = path.absolute(baseDir);
 
   final tarContents = Stream.fromIterable(contents.map((entry) {
-    entry = path.absolute(entry);
+    entry = path.absolute(path.normalize(entry));
     if (!path.isWithin(baseDir, entry)) {
       throw ArgumentError('Entry $entry is not inside $baseDir.');
     }
